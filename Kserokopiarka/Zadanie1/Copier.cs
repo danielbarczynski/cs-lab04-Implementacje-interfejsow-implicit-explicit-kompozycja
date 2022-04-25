@@ -8,15 +8,15 @@ namespace Zadanie1
 {
     internal class Copier
     {
-        private int i = 0;
         private bool isOn;
-        public int Counter { get; set; }
-        public int PrintCounter { get; set; }
-        public int ScanCounter { get; set; }
+        public int Counter { get; set; } = 0; // uruchomienia kserokopiarki
+        public int PrintCounter { get; set; } = 0;
+        public int ScanCounter { get; set; } = 0;
         public void PowerOn() {
             if (isOn == false)
             {
                 isOn = true;
+                Counter++;
                 Console.WriteLine("Urządzenie włączone");
             }
         }
@@ -31,6 +31,7 @@ namespace Zadanie1
             if (isOn)
             {
                 DateTime date = DateTime.Now;
+                PrintCounter++;
                 Console.WriteLine($"{date} Print: {document}");
             }
         }
@@ -44,16 +45,17 @@ namespace Zadanie1
                     document = "ImageScan" + document;
                 else
                     document = "TextScan" + document;
-                Console.WriteLine($"{date} Scan: {document}{++i}");
+                Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
             }
         }
         public void ScanAndPrint(string document) { 
             if (isOn)
             {
                 DateTime date = DateTime.Now;
+                PrintCounter++;
                 if (document.Contains(".jpg"))
                 {
-                    Console.WriteLine($"{date} Scan: {document}{++i}");
+                    Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
                     Console.WriteLine($"{date} Print: {document}");
                 }
             }       
