@@ -8,7 +8,7 @@ using static ver1.IDevice;
 
 namespace Zadanie1
 {
-    internal class Copier : BaseDevice, IPrinter, IScanner
+    public class Copier : BaseDevice, IPrinter, IScanner
     {
         public int PrintCounter { get; set; } = 0;
         public int ScanCounter { get; set; } = 0;

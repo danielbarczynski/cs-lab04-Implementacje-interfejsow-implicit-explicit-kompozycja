@@ -3,6 +3,9 @@ using ver1;
 using System;
 using System.IO;
 using Zadanie1;
+using Xunit.Sdk;
+using NUnit.Framework.Internal;
+using TestMethod = NUnit.Framework.Internal.TestMethod;
 
 namespace ver1UnitTests
 {
