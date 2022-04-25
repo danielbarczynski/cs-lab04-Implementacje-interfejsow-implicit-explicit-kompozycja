@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ver1;
 
 namespace Zadanie1
 {
@@ -12,7 +13,8 @@ namespace Zadanie1
         public int Counter { get; set; } = 0; // uruchomienia kserokopiarki
         public int PrintCounter { get; set; } = 0;
         public int ScanCounter { get; set; } = 0;
-        public void PowerOn() {
+        public void PowerOn()
+        {
             if (isOn == false)
             {
                 isOn = true;
@@ -20,14 +22,16 @@ namespace Zadanie1
                 Console.WriteLine("Urządzenie włączone");
             }
         }
-        public void PowerOff() {
+        public void PowerOff()
+        {
             if (isOn)
             {
                 isOn = false;
                 Console.WriteLine("Urządzenie wyłączone");
             }
         }
-        public void Print(string document) {
+        public void Print(in IDocument document)
+        {
             if (isOn)
             {
                 DateTime date = DateTime.Now;
@@ -35,30 +39,46 @@ namespace Zadanie1
                 Console.WriteLine($"{date} Print: {document}");
             }
         }
-        public void Scan(string document) {
+        public void Scan(out IDocument? document)
+        {
+            document = null;
+            DateTime date = DateTime.Now;
             if (isOn)
             {
-                DateTime date = DateTime.Now;
-                if (document.Contains(".pdf"))
-                    document = "PDFScan" + document;
-                else if (document.Contains(".jpg"))
-                    document = "ImageScan" + document;
+                if (document?.GetFormatType() == IDocument.FormatType.PDF)
+                {
+                    PDFDocument documentScan = new PDFDocument("");
+                    documentScan.GetFileName();
+                    documentScan.ChangeFileName("PDFScan" + document.GetFileName());
+                    document = documentScan;
+                }
+                else if (document?.GetFormatType() == IDocument.FormatType.JPG)
+                {
+                    ImageDocument documentScan = new ImageDocument("");
+                    documentScan.ChangeFileName("PDFScan" + document.GetFileName());
+                    document = documentScan;
+                }
                 else
-                    document = "TextScan" + document;
+                {
+                    TextDocument documentScan = new TextDocument("");
+                    documentScan.ChangeFileName("PDFScan" + document?.GetFileName());
+                    document = documentScan;
+                }
+
                 Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
             }
         }
-        public void ScanAndPrint(string document) { 
+        public void ScanAndPrint()
+        {
             if (isOn)
             {
+                IDocument document = new ImageDocument("aaa.jpg");
                 DateTime date = DateTime.Now;
                 PrintCounter++;
-                if (document.Contains(".jpg"))
-                {
-                    Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
-                    Console.WriteLine($"{date} Print: {document}");
-                }
-            }       
+
+                Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
+                Console.WriteLine($"{date} Print: {document}");
+            }
         }
     }
 }
