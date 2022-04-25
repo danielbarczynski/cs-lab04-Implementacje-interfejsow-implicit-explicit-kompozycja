@@ -4,35 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ver1;
+using static ver1.IDevice;
 
 namespace Zadanie1
 {
-    internal class Copier
+    internal class Copier : BaseDevice, IPrinter, IScanner
     {
-        private bool isOn;
-        public int Counter { get; set; } = 0; // uruchomienia kserokopiarki
         public int PrintCounter { get; set; } = 0;
         public int ScanCounter { get; set; } = 0;
-        public void PowerOn()
-        {
-            if (isOn == false)
-            {
-                isOn = true;
-                Counter++;
-                Console.WriteLine("Urządzenie włączone");
-            }
-        }
-        public void PowerOff()
-        {
-            if (isOn)
-            {
-                isOn = false;
-                Console.WriteLine("Urządzenie wyłączone");
-            }
-        }
+
         public void Print(in IDocument document)
         {
-            if (isOn)
+            if (state == State.on)
             {
                 DateTime date = DateTime.Now;
                 PrintCounter++;
@@ -59,13 +42,13 @@ namespace Zadanie1
                     document = new ImageDocument($"ImageScan{++ScanCounter}.jpg");
                     break;
             }
-            if (isOn)
+            if (state == State.on)
                 Console.WriteLine($"{date} Scan: {document.GetFileName()}");
         }
 
         public void ScanAndPrint()
         {
-            if (isOn)
+            if (state == State.on)
             {
                 Scan(out IDocument document, IDocument.FormatType.JPG);
                 Print(document);
