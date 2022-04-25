@@ -36,48 +36,39 @@ namespace Zadanie1
             {
                 DateTime date = DateTime.Now;
                 PrintCounter++;
-                Console.WriteLine($"{date} Print: {document}");
+                Console.WriteLine($"{date} Print: {document.GetFileName()}");
             }
         }
-        public void Scan(out IDocument? document)
+        public void Scan(out IDocument document)
         {
-            document = null;
-            DateTime date = DateTime.Now;
-            if (isOn)
-            {
-                if (document?.GetFormatType() == IDocument.FormatType.PDF)
-                {
-                    PDFDocument documentScan = new PDFDocument("");
-                    documentScan.GetFileName();
-                    documentScan.ChangeFileName("PDFScan" + document.GetFileName());
-                    document = documentScan;
-                }
-                else if (document?.GetFormatType() == IDocument.FormatType.JPG)
-                {
-                    ImageDocument documentScan = new ImageDocument("");
-                    documentScan.ChangeFileName("PDFScan" + document.GetFileName());
-                    document = documentScan;
-                }
-                else
-                {
-                    TextDocument documentScan = new TextDocument("");
-                    documentScan.ChangeFileName("PDFScan" + document?.GetFileName());
-                    document = documentScan;
-                }
-
-                Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
-            }
+            Scan(out document, IDocument.FormatType.JPG);
         }
+
+        public void Scan(out IDocument document, IDocument.FormatType formatType)
+        {
+            DateTime date = DateTime.Now;
+            switch (formatType)
+            {
+                case IDocument.FormatType.PDF:
+                    document = new PDFDocument($"PDFScan{++ScanCounter}.pdf");
+                    break;
+                case IDocument.FormatType.TXT:
+                    document = new ImageDocument($"TextScan{++ScanCounter}.txt");
+                    break;
+                default:
+                    document = new ImageDocument($"ImageScan{++ScanCounter}.jpg");
+                    break;
+            }
+            if (isOn)
+                Console.WriteLine($"{date} Scan: {document.GetFileName()}");
+        }
+
         public void ScanAndPrint()
         {
             if (isOn)
             {
-                IDocument document = new ImageDocument("aaa.jpg");
-                DateTime date = DateTime.Now;
-                PrintCounter++;
-
-                Console.WriteLine($"{date} Scan: {document}{++ScanCounter}");
-                Console.WriteLine($"{date} Print: {document}");
+                Scan(out IDocument document, IDocument.FormatType.JPG);
+                Print(document);
             }
         }
     }
