@@ -29,6 +29,7 @@ namespace Zadanie1
             {
                 Scanner.PowerOn();
                 Scanner.Scan(out IDocument document, IDocument.FormatType.JPG);
+                Scanner.PowerOff();
             }
         }
 
@@ -39,6 +40,21 @@ namespace Zadanie1
                 Printer.PowerOn();
                 IDocument doc1 = new PDFDocument("aaa.pdf");
                 Printer.Print(in doc1);
+                Printer.PowerOff();
+            }
+        }
+
+        public void ScanAndPrint()
+        {
+            if (state == State.on)
+            {
+                Scanner.PowerOn();
+                Scanner.Scan(out IDocument document, IDocument.FormatType.JPG);
+                Scanner.PowerOff();
+                Printer.PowerOn();
+                IDocument doc1 = new PDFDocument("aaa.pdf");
+                Printer.Print(in doc1);
+                Printer.PowerOff();
             }
         }
     }
