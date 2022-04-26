@@ -10,6 +10,26 @@ namespace Zadanie2
 {
     public class MultiFunctionalDevice : Copier, IFax, IScanner, IPrinter
     {
-        
+        public int FaxCounter { get; set; } = 0;
+
+        public void Fax(in IDocument document)
+        {
+            if (state == IDevice.State.on)
+            {
+                DateTime date = DateTime.Now;
+                FaxCounter++;
+                Console.WriteLine($"{date} Fax: {document.GetFileName()}");
+            }
+        }
+
+        public void ScanPrintAndFax()
+        {
+            if (state == IDevice.State.on)
+            {
+                Scan(out IDocument document, IDocument.FormatType.JPG);
+                Print(document);
+                Fax(document);
+            }
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace Zadanie1
                     document = new PDFDocument($"PDFScan{++ScanCounter}.pdf");
                     break;
                 case IDocument.FormatType.TXT:
-                    document = new ImageDocument($"TextScan{++ScanCounter}.txt");
+                    document = new TextDocument($"TextScan{++ScanCounter}.txt");
                     break;
                 default:
                     document = new ImageDocument($"ImageScan{++ScanCounter}.jpg");
