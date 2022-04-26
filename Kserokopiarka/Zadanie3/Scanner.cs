@@ -9,26 +9,54 @@ namespace Zadanie3
 {
     public class Scanner : IScanner
     {
-        public int Counter => throw new NotImplementedException();
+        public int Counter { get; set; }
+        public int ScanCounter { get; set; }
 
-        public IDevice.State GetState()
-        {
-            throw new NotImplementedException();
-        }
+        protected IDevice.State state = IDevice.State.off;
+        public IDevice.State GetState() => state;
 
         public void PowerOff()
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.on)
+            {
+                state = IDevice.State.off;
+                Console.WriteLine("... Device is off !");
+            }
         }
 
         public void PowerOn()
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.off)
+            {
+                state = IDevice.State.on;
+                Counter++;
+                Console.WriteLine("Device is on ...");
+            }
+        }
+
+        public void Scan(out IDocument document)
+        {
+            Scan(out document, IDocument.FormatType.JPG);
         }
 
         public void Scan(out IDocument document, IDocument.FormatType formatType)
         {
-            throw new NotImplementedException();
+            DateTime date = DateTime.Now;
+            switch (formatType)
+            {
+                case IDocument.FormatType.PDF:
+                    document = new PDFDocument($"PDFScan{++ScanCounter}.pdf");
+                    break;
+                case IDocument.FormatType.TXT:
+                    document = new ImageDocument($"TextScan{++ScanCounter}.txt");
+                    break;
+                default:
+                    document = new ImageDocument($"ImageScan{++ScanCounter}.jpg");
+                    break;
+            }
+            if (state == IDevice.State.on)
+                Console.WriteLine($"{date} Scan: {document.GetFileName()}");
         }
+
     }
 }

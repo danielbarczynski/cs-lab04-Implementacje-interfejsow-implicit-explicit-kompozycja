@@ -37,8 +37,8 @@ namespace Zadanie1
             if (state == State.on)
             {
                 Printer.PowerOn();
-                IDocument document;
-                Printer.Print(in document);
+                IDocument doc1 = new PDFDocument("aaa.pdf");
+                Printer.Print(in doc1);
             }
         }
     }
