@@ -1,11 +1,11 @@
 ﻿using ver1;
-using Zadanie1;
+using Zadanie2;
 
 class Program
 {
     static void Main()
     {
-        var xerox = new Copier();
+        var xerox = new MultiFunctionalDevice();
         xerox.PowerOn();
         IDocument doc1 = new PDFDocument("aaa.pdf");
         xerox.Print(in doc1);
@@ -13,10 +13,14 @@ class Program
         IDocument doc2;
         xerox.Scan(out doc2);
 
-        xerox.ScanAndPrint();
+        IDocument doc3;
+        xerox.Fax(in doc1);
+
+        xerox.ScanPrintAndFax();
         System.Console.WriteLine(xerox.Counter);
         System.Console.WriteLine(xerox.PrintCounter);
         System.Console.WriteLine(xerox.ScanCounter);
+        Console.WriteLine(xerox.FaxCounter);
 
     }
 }
