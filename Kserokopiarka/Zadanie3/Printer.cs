@@ -4,31 +4,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ver1;
+using Zadanie1;
 
 namespace Zadanie3
 {
     public class Printer : IPrinter
     {
-        public int Counter => throw new NotImplementedException();
+        public int Counter { get; set; }
+        public int PrintCounter { get; set; }
 
-        public IDevice.State GetState()
-        {
-            throw new NotImplementedException();
-        }
+        protected IDevice.State state = IDevice.State.off;
+        public IDevice.State GetState() => state;
 
         public void PowerOff()
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.on)
+            {
+                state = IDevice.State.off;
+                Console.WriteLine("... Device is off !");
+            }
         }
 
         public void PowerOn()
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.off)
+            {
+                state = IDevice.State.on;
+                Counter++;
+                Console.WriteLine("Device is on ...");
+            }
         }
 
         public void Print(in IDocument document)
         {
-            throw new NotImplementedException();
+            if (state == IDevice.State.on)
+            {
+                DateTime date = DateTime.Now;
+                PrintCounter++;
+                Console.WriteLine($"{date} Print: {document.GetFileName()}");
+            }
         }
     }
 }
