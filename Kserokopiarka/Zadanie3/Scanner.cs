@@ -15,7 +15,7 @@ namespace Zadanie3
         protected IDevice.State state = IDevice.State.off;
         public IDevice.State GetState() => state;
 
-        public void PowerOff()
+        public void PowerOff() // nie wiem czy ma dziedziczyc po basedevice, wiec przekopiowuje te metody, trzymam sie diagramu
         {
             if (state == IDevice.State.on)
             {

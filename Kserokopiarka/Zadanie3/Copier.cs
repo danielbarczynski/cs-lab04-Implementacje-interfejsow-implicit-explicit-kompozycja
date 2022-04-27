@@ -17,7 +17,7 @@ namespace Zadanie1
         private readonly Scanner Scanner;
         private readonly Printer Printer;
 
-        public Copier(Scanner scanner, Printer printer)
+        public Copier(Scanner scanner, Printer printer) // nie mam pojecia czy fax tez uwzgledniac
         {
             Scanner = scanner;
             Printer = printer;

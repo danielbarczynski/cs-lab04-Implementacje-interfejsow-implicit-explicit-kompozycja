@@ -51,7 +51,7 @@ namespace Zadanie1
             if (state == State.on)
             {
                 Scan(out IDocument document, IDocument.FormatType.JPG);
-                Print(document);
+                Print(in document);
             }
         }
     }

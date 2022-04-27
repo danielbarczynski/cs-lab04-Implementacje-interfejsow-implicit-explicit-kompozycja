@@ -27,8 +27,8 @@ namespace Zadanie2
             if (state == IDevice.State.on)
             {
                 Scan(out IDocument document, IDocument.FormatType.JPG);
-                Print(document);
-                Fax(document);
+                Print(in document);
+                Fax(in document);
             }
         }
     }

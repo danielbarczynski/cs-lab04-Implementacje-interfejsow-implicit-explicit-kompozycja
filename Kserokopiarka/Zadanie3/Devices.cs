@@ -59,7 +59,7 @@ namespace ver1
 
     public interface IFax : IDevice
     {
-        public void Fax(in IDocument document);
+        void Faxx(in IDocument document);
     }
 
 }

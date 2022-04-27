@@ -7,7 +7,7 @@ using ver1;
 
 namespace Zadanie3
 {
-    public class Fax : IFax
+    public class Fax : IFax // postanowilem zrobic osobna klase jak z printerem i scannerem
     {
         public int Counter { get; set; }
         public int FaxCounter { get; set; }
@@ -15,7 +15,7 @@ namespace Zadanie3
         protected IDevice.State state = IDevice.State.off;
         public IDevice.State GetState() => state;
 
-        public void PowerOff()
+        public void PowerOff() 
         {
             if (state == IDevice.State.on)
             {
