@@ -8,7 +8,7 @@ using Zadanie1;
 
 namespace Zadanie2
 {
-    public class MultifunctionalDevice : Copier, IFax, IScanner, IPrinter
+    public class MultidimensionalDevice : Copier, IFax, IScanner, IPrinter
     {
         public int FaxCounter { get; set; } = 0;
 

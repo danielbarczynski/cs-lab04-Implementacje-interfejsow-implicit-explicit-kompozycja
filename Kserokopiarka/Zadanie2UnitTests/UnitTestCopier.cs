@@ -43,7 +43,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_GetState_StateOff() // nazw metod nie zmieniam gdzie nie trzeba
         {
-            var copier = new MultiFunctionalDevice(); // zmienilem tylko przypisanie na nowa klase
+            var copier = new MultifunctionalDevice(); // zmienilem tylko przypisanie na nowa klase
             copier.PowerOff();
 
             Assert.AreEqual(IDevice.State.off, copier.GetState());
@@ -52,7 +52,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_GetState_StateOn()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             Assert.AreEqual(IDevice.State.on, copier.GetState());
@@ -64,7 +64,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_Print_DeviceOn()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             var currentConsoleOut = Console.Out;
@@ -83,7 +83,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_Print_DeviceOff()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOff();
 
             var currentConsoleOut = Console.Out;
@@ -102,7 +102,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_Scan_DeviceOff()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOff();
 
             var currentConsoleOut = Console.Out;
@@ -121,7 +121,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_Scan_DeviceOn()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             var currentConsoleOut = Console.Out;
@@ -140,7 +140,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_Scan_FormatTypeDocument()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             var currentConsoleOut = Console.Out;
@@ -170,7 +170,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_ScanAndPrint_DeviceOn()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             var currentConsoleOut = Console.Out;
@@ -190,7 +190,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_ScanAndPrint_DeviceOff()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOff();
 
             var currentConsoleOut = Console.Out;
@@ -207,7 +207,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_ScanPrintAndFax_DeviceOn()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             var currentConsoleOut = Console.Out;
@@ -225,7 +225,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_ScanPrintAndFax_DeviceOff()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOff();
 
             var currentConsoleOut = Console.Out;
@@ -243,7 +243,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_PrintCounter()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             IDocument doc1 = new PDFDocument("aaa.pdf");
@@ -268,7 +268,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_ScanCounter()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             IDocument doc1;
@@ -294,7 +294,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_FaxCounter()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
 
             IDocument doc1 = new PDFDocument("aaa.pdf");
@@ -319,7 +319,7 @@ namespace ver1UnitTests
         [TestMethod]
         public void Copier_PowerOnCounter()
         {
-            var copier = new MultiFunctionalDevice();
+            var copier = new MultifunctionalDevice();
             copier.PowerOn();
             copier.PowerOn();
             copier.PowerOn();

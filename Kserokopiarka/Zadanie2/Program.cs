@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        var xerox = new MultiFunctionalDevice();
+        var xerox = new MultifunctionalDevice();
         xerox.PowerOn();
         IDocument doc1 = new PDFDocument("aaa.pdf");
         xerox.Print(in doc1);
