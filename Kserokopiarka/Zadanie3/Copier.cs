@@ -22,24 +22,41 @@ namespace Zadanie1
             Scanner = scanner;
             Printer = printer;
         }
-
-       public void Scan()
+        public void Scan(out IDocument document)
         {
             if (state == State.on)
             {
                 Scanner.PowerOn();
-                Scanner.Scan(out IDocument document, IDocument.FormatType.JPG);
+                Scanner.Scan(out document, IDocument.FormatType.JPG);
                 Scanner.PowerOff();
+            }
+            else
+            {
+                document = null;
+            }
+
+        }
+
+        public void Scan(out IDocument document, IDocument.FormatType formatType)
+        {
+            if (state == State.on)
+            {
+                Scanner.PowerOn();
+                Scanner.Scan(out document, formatType);
+                Scanner.PowerOff();
+            }
+            else
+            {
+                document = null;
             }
         }
 
-        public void Print()
+        public void Print(in IDocument document)
         {
             if (state == State.on)
             {
                 Printer.PowerOn();
-                IDocument doc1 = new PDFDocument("aaa.pdf");
-                Printer.Print(in doc1);
+                Printer.Print(in document);
                 Printer.PowerOff();
             }
         }
@@ -48,12 +65,12 @@ namespace Zadanie1
         {
             if (state == State.on)
             {
+                IDocument document;
                 Scanner.PowerOn();
-                Scanner.Scan(out IDocument document, IDocument.FormatType.JPG);
+                Scanner.Scan(out document, IDocument.FormatType.JPG);
                 Scanner.PowerOff();
                 Printer.PowerOn();
-                IDocument doc1 = new PDFDocument("aaa.pdf");
-                Printer.Print(in doc1);
+                Printer.Print(in document);
                 Printer.PowerOff();
             }
         }
