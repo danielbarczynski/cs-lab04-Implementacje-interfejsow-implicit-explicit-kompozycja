@@ -8,19 +8,15 @@ using Zadanie1;
 
 namespace Zadanie2
 {
-    public class MultidimensionalDevice : Copier, IFax, IScanner, IPrinter
+    public class MultidimensionalDevice : Copier
     {
         public int FaxCounter { get; set; } = 0;
 
-        public void Fax(in IDocument document)
+        public MultidimensionalDevice()
         {
-            if (state == IDevice.State.on)
-            {
-                DateTime date = DateTime.Now;
-                FaxCounter++;
-                Console.WriteLine($"{date} Fax: {document.GetFileName()}");
-            }
+            
         }
+
 
         public void ScanPrintAndFax()
         {

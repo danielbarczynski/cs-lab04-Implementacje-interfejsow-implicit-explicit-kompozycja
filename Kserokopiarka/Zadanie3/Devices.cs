@@ -57,4 +57,9 @@ namespace ver1
         void Scan(out IDocument document, IDocument.FormatType formatType);
     }
 
+    public interface IFax : IDevice
+    {
+        public void Fax(in IDocument document);
+    }
+
 }
